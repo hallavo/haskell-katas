@@ -2,7 +2,7 @@
 -- 1 5 10 50 100 500 1000
 
 -- WORK IN PROGRESS!
--- The program doesn't handle IV, IX XC etc. correctly
+-- Doesn't handle IV, IX, XC, etc. correctly
 -- For example  4 -> IIII
 --              9 -> VIIII
 --             49 -> XXXXVIIII
