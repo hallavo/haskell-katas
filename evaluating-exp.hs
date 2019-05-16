@@ -1,44 +1,24 @@
-{-# LANGUAGE FlexibleInstances, UndecidableInstances, DuplicateRecordFields #-}
-
-module Main where
-
-import Control.Monad
-import Data.Array
-import Data.Bits
-import Data.List
-import Data.List.Split
-import Data.Set
-import Debug.Trace
-import System.Environment
-import System.IO
-import System.IO.Unsafe
-
-
--- I'm getting a GHC error:
 --
--- Unsupported extension: DuplicateRecordFields
+-- I'm getting a type error: 
 --
 
 
 -- To do...
-exp n :: Float -> Float
-exp n = undefined
--- exp n = sum $ map (expTerm x) [0..9]
+exp' :: Float -> Float
+exp' x = sum $ map (expTerm x) [0..9]
 
 
-expTerm :: Int -> Int -> Float
-expTerm x n = x^n / (factorial n)
+expTerm :: Float -> Int -> Float
+expTerm x n = x^n / (fromIntegral (factorial n))
 
-factorial :: Positive a, Integral a => a -> a
-factorial n = factorialOne n 0
+factorial :: Int -> Int
+factorial n = factorialOne n 1
 
 factorialOne :: Integral a => a -> a -> a
 factorialOne 0 result = result
 factorialOne n result = factorialOne (n-1) result*n
 
-main :: IO()
 main = do
-    n <- readLn :: IO Int
-
-    forM_ [1..n] $ \n_itr -> do
-        x <- readLn :: IO Double
+  let input = [1.0, 2.0, 3.0, 4.0, 5.0]
+  print input
+  print $ map exp' input 
