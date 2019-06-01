@@ -1,14 +1,13 @@
---
--- I'm getting a type error: 
---
+
+module Main where
+
+import Control.Monad
+
+exponential :: Double -> Double
+exponential x = sum $ map (expTerm x) [0..9]
 
 
--- To do...
-exp' :: Float -> Float
-exp' x = sum $ map (expTerm x) [0..9]
-
-
-expTerm :: Float -> Int -> Float
+expTerm :: Double -> Int -> Double
 expTerm x n = x^n / (fromIntegral (factorial n))
 
 factorial :: Int -> Int
@@ -19,6 +18,12 @@ factorialOne 0 result = result
 factorialOne n result = factorialOne (n-1) result*n
 
 main = do
-  let input = [1.0, 2.0, 3.0, 4.0, 5.0]
-  print input
-  print $ map exp' input 
+  --  Replaced this with the IO interface below
+  --let input = [1.0, 2.0, 3.0, 4.0, 5.0]
+  --print input
+  --print $ map exponential input 
+
+  n <- readLn :: IO Int
+  forM_ [1..n] $ \n_itr -> do
+    x <- readLn :: IO Double
+    print $ exponential x 
